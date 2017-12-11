@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+<!--
+    Blog entry form
+    Requires: 
+        new_post_title (may be empty)
+        new_post_body (may be empty)
+  -->
+
+{% block content %}
+<h1>What's Up?</h1>
+<form action="/new_post" method="post">
+
+        <label for="title_field">What would you like to title this blog post as?</label>
+        <input id="title_field" name="title" type="text" value="{{ new_post_title }}">
+
+        <label for="body_field">Fire away!</label>
+        <textarea rows="4" cols="50" id="body_field" name="body" >{{ new_post_body }}</textarea>
+
+    <input id="submit_button" type="submit" value="Save">
+</form>
+{% endblock %}

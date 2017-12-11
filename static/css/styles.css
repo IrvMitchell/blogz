@@ -5,10 +5,10 @@ body {
   
   
   nav a {
-      background-color: lightgreen;
+      background-color: rgb(109, 194, 228);
       border-radius:2px;
       border:none;
-      color: darkgreen;
+      color: rgb(10, 0, 100);
       cursor: pointer;
       display:block;
       font-size: 85%;
@@ -61,9 +61,9 @@ body {
   }
   
   .flash_message {
-      background-color: rgb(206, 38, 20);
+      background-color: rgb(226, 197, 194);
       border-radius: 2px;
-      color: rgb(248, 244, 244);
+      color: rgb(185, 13, 13);
       margin: .25rem;
       padding: 2rem;
   }

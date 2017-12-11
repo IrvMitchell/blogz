@@ -5,7 +5,6 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     </head>
 <body>
-    <!-- main element is a flexbox  -->
     <main>
         <nav>
             <a href='/blog'>List all posts<br />(oldest-first)</a>
@@ -14,7 +13,6 @@
         </nav>
 
         <div class="container">
-            <!-- No message categories  -->
             {% with messages = get_flashed_messages() %}
                 {% for message in messages %}
                     <div class="flash_message">{{message|safe}}</div>
@@ -24,7 +22,7 @@
             {% block content %}
             {% endblock %}
 
-        </div> <!-- .container -->
+        </div> 
     </main>
 
 </body>

@@ -39,17 +39,14 @@ class Blog(db.Model):
 @app.route("/blog")
 def display_blog_posts():
     '''
-    Either list one entry with the given ID
-    Or list all blog entries (in default or newest order)
+    Either show the designated post ID
+    Or display all blog posts (in default or newest order)
     '''
-    # TODO refactor to use routes with variables instead of GET parameters
     blog_id = request.args.get('id')
     if (blog_id):
         blog = Blog.query.get(blog_id)
         return render_template('blog.html', title="Blog Entry", blog=blog)
 
-    # if we're here, we need to display all the entries
-    # TODO store sort direction in session[] so we remember user's preference
     sort = request.args.get('sort')
     if (sort=="newest"):
         all_posts = Blog.query.order_by(Blog.created.desc()).all()
@@ -72,7 +69,6 @@ def new_post():
             db.session.add(new_post)
             db.session.commit()
 
-            # display just this most recent blog entry
             url = "/blog?id=" + str(new_post.id)
             return redirect(url)
         else:
@@ -82,7 +78,7 @@ def new_post():
                 new_post_title=new_post_title,
                 new_post_body=new_post_body)
 
-    else: # GET request
+    else:
         return render_template('new_post_form.html', title="Create new blog post")
 
 

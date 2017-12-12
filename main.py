@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 app.secret_key = 'open_sesame'
 
-
+# Create Blog Class
 class Blog(db.Model):
     '''
     Store blog posts
@@ -35,7 +35,7 @@ class Blog(db.Model):
         else:
             return False
 
-
+# Create "/blog" route
 @app.route("/blog")
 def display_blog_posts():
     '''
@@ -54,6 +54,7 @@ def display_blog_posts():
         all_posts = Blog.query.all()   
     return render_template('all_posts.html', title="All Posts", all_posts=all_posts)
 
+# Create "/new_post" route
 @app.route('/new_post', methods=['GET', 'POST'])
 def new_post():
     '''
@@ -72,12 +73,12 @@ def new_post():
             url = "/blog?id=" + str(new_post.id)
             return redirect(url)
         else:
-            flash("Please check your entry for errors. Both a title and a body are required.")
+            flash("Holy Smokes Batman, something's wrong! Please ensure title and body are present.")
             return render_template('new_post_form.html',
                 title="Create new blog post",
                 new_post_title=new_post_title,
                 new_post_body=new_post_body)
-
+    # For GET method
     else:
         return render_template('new_post_form.html', title="Create new blog post")
 

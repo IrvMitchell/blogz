@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 
-
 {% block content %}
-<h1>What's Up?</h1>
-<form action="/new_post" method="post">
+      <div class="new-post">
 
-        <label for="title_field">What would you like to title this blog post as?</label>
-        <input id="title_field" name="title" type="text" value="{{ new_post_title }}">
+        <h1 class="post-header">New Post</h1>
 
-        <label for="body_field">Fire away!</label>
-        <textarea rows="4" cols="50" id="body_field" name="body" >{{ new_post_body }}</textarea>
+        <form method='post'>
 
-    <input id="submit_button" type="submit" value="Save">
-</form>
+          <input type="text" name="title" value='{{blog_title}}' placeholder="Your Title Here"/>
+          <p class="error">{{title_error}}</p><br><br>
+
+          <textarea type="text" name="body" placeholder="Your Text Here">{{blog_body}}</textarea>
+          <p class="error">{{body_error}}</p><br>
+
+          <input type="submit" value="Post"/>
+
+        </form>
+
+      </div>
 {% endblock %}

@@ -10,6 +10,8 @@
                 </h2>
                 <p>{{ blog.body }}</p>
                 <p>{{ blog.created }}</p>
+                <p class="pub-date">Posted on: {{ pub_date }}</p>
+                <p class='user'>Posted by: <a href="/blog?userid={{user_id}}">{{ user }}</a></p>
             </li>
         {% endfor %}
     </ul>

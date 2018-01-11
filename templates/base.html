@@ -1,29 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html>
-    <head>
-        <title>{{title}}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    </head>
-<body>
-    <main>
-        <nav>
-            <a href='/blog'>List all posts<br />(oldest-first)</a>
-            <a href='/blog?sort=newest'>List all posts<br />(newest-first)</a>
-            <a href='/new_post'>Create new posts</a>
-        </nav>
 
-        <div class="container">
-            {% with messages = get_flashed_messages() %}
-                {% for message in messages %}
-                    <div class="flash_message">{{message|safe}}</div>
-                {% endfor %}
-            {% endwith %}
+  <head>
 
-            {% block content %}
-            {% endblock %}
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/wow.css') }}">
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/wow.min.js') }}"></script>
+    <!-- ACTIVATE ANIMATION SCRIPTS -->
+    <script>
+      new WOW().init();
+    </script>
 
-        </div> 
-    </main>
+  </head>
 
-</body>
+  <body>
+
+    <div class="container">
+
+      <nav class="header">
+
+        <h1 class="title"><a href="/">Blogz!</a></h1>
+        <a href="/blog" class="left spacing">View All Posts</a>
+        <a href="/newpost"><i class="fa fa-pencil" aria-hidden="true"></i> New Post</a>
+        <a href="/logout" class="right"><i class="fa fa-sign-out"></i> Logout</a>
+        <a href="/login" class="right spacing"><i class="fa fa-sign-in"></i> Login</a>
+
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </body>
+
 </html>

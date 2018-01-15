@@ -1,6 +1,5 @@
 from flask import Flask, request, redirect, render_template, session
 from flask_sqlalchemy import SQLAlchemy
-# Imports for timestamps and password hashing utilities.
 from datetime import datetime
 from hashutils import make_pw_hash, check_pw_hash
 
@@ -14,7 +13,7 @@ app.secret_key = 'shhhh'
 db = SQLAlchemy(app)
 
 # Created Blog class with ID, title, body, and owner_id columns.
-# Relational database established between Blog & User through a foreign key.
+# TODO: As per instructions: Relational database established between Blog & User through a foreign key.
 class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
@@ -76,7 +75,7 @@ def login():
 
     return render_template('login.html')
 
-#  Signup route - validation and verification of input.
+#  TODO: Make a signup route
 @app.route("/signup", methods=['POST', 'GET'])
 def signup():
     if request.method == 'POST':
@@ -105,6 +104,7 @@ def signup():
             verify_error = "Passwords do not match."
         if exist:
             username_error = "Username already taken."
+        
         # If fields are good, continue to creating session with new username and password.
         if len(username) > 3 and len(password) > 3 and password == verify and not exist:
             new_user = User(username, password)
@@ -122,14 +122,12 @@ def signup():
 
     return render_template('signup.html')
 
-# Blog route with all user posts.
-# TODO - Paginate Blog posts, limiting to 5 posts per page.
+# TODO - Make a route to show all blog posts.
 @app.route('/blog', methods=['POST', 'GET'])
 def blog():
     blog_id = request.args.get('id')
     user_id = request.args.get('userid')
     # posts = Blog.query.all()
-    # Recent blog posts order to top.
     posts = Blog.query.order_by(Blog.pub_date.desc())
 
     if blog_id:
@@ -141,7 +139,7 @@ def blog():
 
     return render_template('blog.html', posts=posts)
 
-# New post route. Redirects to post page.
+# TODO: Make a new post route and redirect to post page.
 @app.route('/newpost')
 def post():
     return render_template('new_post_form.html', title="New Post")
@@ -174,7 +172,7 @@ def newpost():
             body_error = body_error
         )
 
-# Logout - deletes current user session, redirects to index.
+# TODO: delete current user session and redirect to index.
 @app.route('/logout')
 def logout():
     del session['username']
